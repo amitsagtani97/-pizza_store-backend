@@ -14,12 +14,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::group(['prefix' => 'api/'], function () {
+    Route::resource('users', 'App\Api\V1\Controllers\UserController');
+    Route::resource('orders', 'App\Api\V1\Controllers\PizzaController');
+    Route::resource('pizzas', 'App\Api\V1\Controllers\PizzaController');
+    //  Route::post('/payment-success', 'OrderController@payment_success');
 });
-
-Route::resource('users', 'App\Api\V1\Controllers\UserController');
-Route::resource('orders', 'App\Api\V1\Controllers\PizzaController');
-Route::resource('pizzas', 'App\Api\V1\Controllers\PizzaController');
-
-//Route::post('/payment-success', 'OrderController@payment_success');
