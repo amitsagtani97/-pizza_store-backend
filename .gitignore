@@ -5,12 +5,11 @@
 /vendor
 .env
 .env.backup
+.env.*
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-.env
-vendor/
-.env
-vendor/
+/.idea
+.DS_Store
