@@ -8,10 +8,9 @@
 namespace App\Api\V1\Controllers;
 
 
-use App\Http\Resources\PizzaResource;
-use App\Http\Resources\UserResource;
 use App\Api\V1\Requests\CreatePizzaRequest;
 use App\Api\V1\Requests\UpdatePizzaRequest;
+use App\Http\Resources\PizzaResource;
 use App\Services\PizzaService;
 
 
@@ -38,7 +37,7 @@ class PizzaController extends BaseController
     public function index(PizzaService $service)
     {
         $pizzas = $service->index();
-        return UserResource::collection($pizzas);
+        return PizzaResource::collection($pizzas);
     }
 
     /**

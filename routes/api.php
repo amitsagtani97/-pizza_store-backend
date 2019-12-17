@@ -14,10 +14,16 @@ use Illuminate\Http\Request;
 |
 */
 
+$basePath = '\App\Api\V1\Controllers\\';
 
-Route::group(['prefix' => 'api/'], function () {
-    Route::resource('users', 'App\Api\V1\Controllers\UserController');
-    Route::resource('orders', 'App\Api\V1\Controllers\PizzaController');
-    Route::resource('pizzas', 'App\Api\V1\Controllers\PizzaController');
+Route::group(['prefix' => 'v1'], function () use ($basePath) {
+    Route::get('login', $basePath . 'AuthController@login');
+
+    Route::resource('orders', $basePath . 'PizzaController');
+    Route::resource('pizzas', $basePath . 'PizzaController');
+
+    Route::group(['middleware' => 'jwt.auth'], function () use($basePath){
+        Route::get('me', $basePath . 'UserController@me');
+    });
     //  Route::post('/payment-success', 'OrderController@payment_success');
 });

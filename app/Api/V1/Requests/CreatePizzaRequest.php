@@ -20,7 +20,7 @@ class CreatePizzaRequest extends BaseRequest implements Contract
     const DESCRIPTION = 'description';
     const PRICE = 'price';
     const IMAGE_LINK = 'image_link';
-    const SIZE = 'size';
+    const IS_VEG = 'is_veg';
 
 
     public function rules()
@@ -30,7 +30,7 @@ class CreatePizzaRequest extends BaseRequest implements Contract
             self::DESCRIPTION => 'nullable',
             self::PRICE => 'nullable',
             self::IMAGE_LINK => 'nullable',
-            self::SIZE => 'nullable'
+            self::IS_VEG => 'nullable'
         ];
     }
 
@@ -54,9 +54,9 @@ class CreatePizzaRequest extends BaseRequest implements Contract
         return $this->input(self::IMAGE_LINK);
     }
 
-    public function getSize()
+    public function isVeg()
     {
-        return $this->input(self::SIZE);
+        return $this->input(self::IS_VEG);
     }
 
 

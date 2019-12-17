@@ -17,7 +17,7 @@ interface CreatePizzaContract
 
 	public function getImageLink();
 
-	public function getSize();
+	public function isVeg();
 
 
 }

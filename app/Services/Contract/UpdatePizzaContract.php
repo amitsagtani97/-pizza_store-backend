@@ -25,9 +25,9 @@ interface UpdatePizzaContract
 
 	public function hasImageLink();
 
-	public function getSize();
+	public function hasIsVeg();
 
-	public function hasSize();
+	public function getIsVeg();
 
 
 }

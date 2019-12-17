@@ -19,7 +19,7 @@ class CreatePizzasTable extends Migration
             $table->string('description');
             $table->float('price', 6, 2);
             $table->string('image_link');
-            $table->enum('size', ['regular', 'medium', 'large'])->default('regular');
+            $table->boolean('is_veg')->default(1);
             $table->timestamps();
         });
     }

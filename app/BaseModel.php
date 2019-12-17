@@ -24,8 +24,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class BaseModel extends Model
 {
-  use SoftDeletes;
-
   protected $casts = [
     'id' => 'number'
   ];

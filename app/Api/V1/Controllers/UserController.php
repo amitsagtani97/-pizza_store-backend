@@ -12,6 +12,8 @@ use App\Http\Resources\UserResource;
 use App\Api\V1\Requests\CreateUserRequest;
 use App\Api\V1\Requests\UpdateUserRequest;
 use App\Services\UserService;
+use App\Transformers\UserTransformer;
+use Illuminate\Support\Facades\Auth;
 
 
 /**
@@ -28,6 +30,9 @@ class UserController extends BaseController
         $this->userService = new UserService();
     }
 
+    public function me() {
+        return new UserResource(Auth::user());
+    }
 
     /**
      * @param UserService $service

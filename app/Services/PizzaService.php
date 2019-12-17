@@ -55,7 +55,7 @@ class PizzaService
         $pizza->description = $contract->getDescription();
         $pizza->price = $contract->getPrice();
         $pizza->image_link = $contract->getImageLink();
-        $pizza->size = $contract->getSize();
+        $pizza->is_veg = $contract->isVeg();
 
         $pizza->save();
         return $pizza;
@@ -80,8 +80,8 @@ class PizzaService
         if ($contract->hasImageLink()) {
             $pizza->image_link = $contract->getImageLink();
         }
-        if ($contract->hasSize()) {
-            $pizza->size = $contract->getSize();
+        if ($contract->hasIsVeg()) {
+            $pizza->is_veg = $contract->getIsVeg();
         }
 
         $pizza->save();

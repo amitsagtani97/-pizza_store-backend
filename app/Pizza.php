@@ -16,13 +16,13 @@ namespace App;
  * @property string $description
  * @property string $price
  * @property string $image_link
- * @property string $size
+ * @property boolean $is_veg
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Pizza whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Pizza whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Pizza whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Pizza wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Pizza whereImageLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Pizza whereSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pizza whereIsVeg($value)
 */
 class Pizza extends BaseModel
 {
