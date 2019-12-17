@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 /*
@@ -17,12 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/pizzas', 'PizzaController@index');
+Route::resource('users', 'App\Api\V1\Controllers\UserController');
+Route::resource('orders', 'App\Api\V1\Controllers\PizzaController');
+Route::resource('pizzas', 'App\Api\V1\Controllers\PizzaController');
 
-Route::get('/users/{email}', 'UserController@show');
-Route::post('/users', 'UserController@store');
-Route::patch('/users/{id}', 'UserController@update');
-
-Route::get('/orders/{id}', 'OrderController@show');
-Route::post('/orders', 'OrderController@store');
-Route::post('/payment-success', 'OrderController@payment_success');
+//Route::post('/payment-success', 'OrderController@payment_success');

@@ -13,7 +13,7 @@ class PizzasTableSeeder extends Seeder
      */
 
     public function run() {
-        $size = (integer)Config::get('mcs-helper.seeder.row_count');
+        $size = 20;
         factory(Pizza::class, $size)->create();
     }
 }
