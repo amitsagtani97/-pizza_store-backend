@@ -14,7 +14,7 @@ $links = [
 
 $factory->define(Pizza::class, function (Faker $faker) use ($links) {
     return [
-        'name' => $faker->sentence(10),
+        'name' => $faker->randomElement(["Pizza Margherita", "Marinara sauce", "Marinara", "Quattro Formaggi.", "Americana", "Rustica", "Campagnola", "Vegetariana", "Bufalina"]),
         'description' => $faker->sentence(10),
         'price' => $faker->numberBetween(100, 500),
         'image_link' => $faker->randomElement($links),
