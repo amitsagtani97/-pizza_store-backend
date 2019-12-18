@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class DeliverOrderRequest extends FormRequest
 {
 
-    const PIZZAS = "pizzas";
+    const CHOICES = "choices";
     const TOTAL = "total";
     const ADDRESS = "address";
 
@@ -29,14 +29,14 @@ class DeliverOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            self::PIZZAS => 'required',
+            self::CHOICES => 'required',
             self::TOTAL => 'required'
         ];
     }
 
-    public function getPizzas()
+    public function getChoices()
     {
-        return $this->get(self::PIZZAS);
+        return $this->get(self::CHOICES);
     }
 
     public function getTotal()

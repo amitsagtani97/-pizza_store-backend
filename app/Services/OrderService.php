@@ -110,18 +110,20 @@ class OrderService
     {
         $order = new Order();
         $order->total = $request->getTotal();
-        $currentUser = JWTAuth::parseToken()->authenticate();
-        if ($currentUser) {
-            $order->user_id = $currentUser->id;
+        if ($request->header('Authorization')) {
+            $currentUser = JWTAuth::parseToken()->authenticate();
+            if ($currentUser) {
+                $order->user_id = $currentUser->id;
+            }
         }
         $order->address = $request->getAddress() ?? $currentUser->address ?? null;
         $order->save();
 
-        $pizzas = $request->getPizzas();
-        foreach ($pizzas as $pizza_id => $quantity) {
+        $choices = $request->getChoices();
+        foreach ($choices as $data) {
             $choice = new Choice();
-            $choice->quantity = $quantity;
-            $choice->pizza_id = $pizza_id;
+            $choice->quantity = $data['quantity'];
+            $choice->pizza_id = $data['pizza_id'];
             $choice->order_id = $order->id;
             $choice->save();
         }
