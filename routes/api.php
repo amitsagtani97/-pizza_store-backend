@@ -20,6 +20,7 @@ Route::group(['prefix' => 'v1'], function () use ($basePath) {
     Route::get('login', $basePath . 'AuthController@login');
 
     Route::resource('orders', $basePath . 'PizzaController');
+    Route::post('deliver', $basePath . 'OrderController@deliver');
     Route::resource('pizzas', $basePath . 'PizzaController');
 
     Route::group(['middleware' => 'jwt.auth'], function () use($basePath){

@@ -8,9 +8,13 @@ namespace App\Services;
 
 
 use App\Api\V1\Exceptions\OrderNotFoundException;
+use App\Choice;
+use App\Http\Requests\DeliverOrderRequest;
 use App\Order;
 use App\Services\Contract\CreateOrderContract;
 use App\Services\Contract\UpdateOrderContract;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 /**
  * Class OrderService
@@ -23,7 +27,8 @@ class OrderService
      * @param $orderId
      * @return Order
      */
-    public static function find($orderId) {
+    public static function find($orderId)
+    {
         $order = Order::find($orderId);
         if (!$order) {
             throw new OrderNotFoundException();
@@ -34,7 +39,8 @@ class OrderService
     /**
      * @return Order[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function index() {
+    public function index()
+    {
         return Order::all();
     }
 
@@ -42,7 +48,8 @@ class OrderService
      * @param $orderId
      * @return Order
      */
-    public function show($orderId) {
+    public function show($orderId)
+    {
         return self::find($orderId);
     }
 
@@ -50,9 +57,10 @@ class OrderService
      * @param CreateOrderContract $contract
      * @return Order
      */
-    public function store(CreateOrderContract $contract) {
+    public function store(CreateOrderContract $contract)
+    {
         $order = new Order();
-                $order->user_id = $contract->getUserId();
+        $order->user_id = $contract->getUserId();
         $order->total = $contract->getTotal();
         $order->status = $contract->getStatus();
         $order->stripe_token = $contract->getStripeToken();
@@ -66,9 +74,10 @@ class OrderService
      * @param UpdateOrderContract $contract
      * @return Order
      */
-    public function update($orderId, UpdateOrderContract $contract) {
+    public function update($orderId, UpdateOrderContract $contract)
+    {
         $order = self::find($orderId);
-                if ($contract->hasUserId()) {
+        if ($contract->hasUserId()) {
             $order->user_id = $contract->getUserId();
         }
         if ($contract->hasTotal()) {
@@ -88,11 +97,33 @@ class OrderService
     /**
      * @param $orderId
      */
-    public function delete($orderId) {
+    public function delete($orderId)
+    {
         $order = $this->find($orderId);
         try {
             $order->delete();
         } catch (\Exception $e) {
+        }
+    }
+
+    public function deliver(DeliverOrderRequest $request)
+    {
+        $order = new Order();
+        $order->total = $request->getTotal();
+        $currentUser = JWTAuth::parseToken()->authenticate();
+        if ($currentUser) {
+            $order->user_id = $currentUser->id;
+        }
+        $order->address = $request->getAddress() ?? $currentUser->address ?? null;
+        $order->save();
+
+        $pizzas = $request->getPizzas();
+        foreach ($pizzas as $pizza_id => $quantity) {
+            $choice = new Choice();
+            $choice->quantity = $quantity;
+            $choice->pizza_id = $pizza_id;
+            $choice->order_id = $order->id;
+            $choice->save();
         }
     }
 }

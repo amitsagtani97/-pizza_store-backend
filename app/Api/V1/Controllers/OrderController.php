@@ -10,6 +10,7 @@ namespace App\Api\V1\Controllers;
 
 use App\Api\V1\Requests\CreateOrderRequest;
 use App\Api\V1\Requests\UpdateOrderRequest;
+use App\Http\Requests\DeliverOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Services\OrderService;
 
@@ -81,5 +82,9 @@ class OrderController extends BaseController
     public function destroy($id, OrderService $service)
     {
         $service->delete($id);
+    }
+
+    public function deliver(DeliverOrderRequest $request,  OrderService $service){
+        $service->deliver($request);
     }
 }
