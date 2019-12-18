@@ -98,6 +98,6 @@ class UserService
 
     public function orders(User $user)
     {
-        return $user->orders()->with('choices')->get();
+        return $user->orders()->has('choices')->with('choices.pizza')->get();
     }
 }

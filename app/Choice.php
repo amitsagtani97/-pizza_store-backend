@@ -12,7 +12,7 @@ namespace App;
  * Class Choice
  *
  * @package App
-  * @property int $id
+ * @property int $id
  * @property int $order_id
  * @property int $pizza_id
  * @property int $quantity
@@ -20,8 +20,16 @@ namespace App;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Choice whereOrderId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Choice wherePizzaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Choice whereQuantity($value)
-*/
+ */
 class Choice extends BaseModel
 {
+    public function pizza()
+    {
+        return $this->belongsTo(Pizza::class);
+    }
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

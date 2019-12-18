@@ -13,7 +13,7 @@ class ChoiceResource extends JsonResource
     {
         return [
             'id' => (int)$this->id,
-            'total' => $this->pizza_id,
+            'pizza' => new PizzaResource($this->pizza),
             'quantity' => $this->quantity,
             'created_at' => HelperUtil::nullOrDateTimeString($this->created_at),
             'updated_at' => HelperUtil::nullOrDateTimeString($this->updated_at),
