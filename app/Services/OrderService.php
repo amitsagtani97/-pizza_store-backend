@@ -111,9 +111,13 @@ class OrderService
         $order = new Order();
         $order->total = $request->getTotal();
         if ($request->header('Authorization')) {
-            $currentUser = JWTAuth::parseToken()->authenticate();
-            if ($currentUser) {
-                $order->user_id = $currentUser->id;
+            try{
+                $currentUser = JWTAuth::parseToken()->authenticate();
+                if ($currentUser) {
+                    $order->user_id = $currentUser->id;
+                }
+            }catch (\Exception $exception){
+
             }
         }
         $order->address = $request->getAddress() ?? $currentUser->address ?? null;
