@@ -19,6 +19,8 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
+            $table->string('address')->nullable();
+
             $table->float('total', 8, 2);
             $table->enum('status', ['in_cart', 'in_processing', 'out_for_delivery', 'delivered'])->default('in_cart');
 
