@@ -14,7 +14,7 @@ class ChoiceResource extends JsonResource
         return [
             'id' => (int)$this->id,
             'total' => $this->pizza_id,
-            'status' => $this->quantity,
+            'quantity' => $this->quantity,
             'created_at' => HelperUtil::nullOrDateTimeString($this->created_at),
             'updated_at' => HelperUtil::nullOrDateTimeString($this->updated_at),
         ];
