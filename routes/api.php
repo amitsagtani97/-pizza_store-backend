@@ -25,6 +25,7 @@ Route::group(['prefix' => 'v1'], function () use ($basePath) {
 
     Route::group(['middleware' => 'jwt.auth'], function () use($basePath){
         Route::get('me', $basePath . 'UserController@me');
+        Route::get('me/orders', $basePath . 'UserController@myOrders');
     });
     //  Route::post('/payment-success', 'OrderController@payment_success');
 });

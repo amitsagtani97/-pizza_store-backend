@@ -8,6 +8,7 @@
 namespace App\Api\V1\Controllers;
 
 
+use App\Http\Resources\OrderResource;
 use App\Http\Resources\UserResource;
 use App\Api\V1\Requests\CreateUserRequest;
 use App\Api\V1\Requests\UpdateUserRequest;
@@ -80,5 +81,10 @@ class UserController extends BaseController
      */
     public function destroy($id, UserService $service) {
         $service->delete($id);
+    }
+
+    public function myOrders(UserService $service){
+        $orders = $service->orders(Auth::user());
+        return OrderResource::collection($orders);
     }
 }

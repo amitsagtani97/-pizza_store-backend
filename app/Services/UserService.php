@@ -95,4 +95,9 @@ class UserService
         } catch (\Exception $e) {
         }
     }
+
+    public function orders(User $user)
+    {
+        return $user->orders()->with('choices')->get();
+    }
 }

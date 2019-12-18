@@ -11,7 +11,7 @@ namespace App;
  * Class OrderResource
  *
  * @package App
-  * @property int $id
+ * @property int $id
  * @property int $user_id
  * @property string $total
  * @property string $status
@@ -25,8 +25,11 @@ namespace App;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereStripeToken($value)
-*/
+ */
 class Order extends BaseModel
 {
-
+    public function choices()
+    {
+        return $this->hasMany(Choice::class);
+    }
 }
