@@ -1,8 +1,12 @@
-# The Palatable Pizza
+# The PIZZA Store
 
-This is the backend code for a pizza ordering website (see the React frontend source code [here](https://github.com/schedutron/palatable-pizza-front)). Used the Laravel framework and Postgres as the relational database to store pizzas, users and their orders. Authentication is managed by Firebase, so no need to store password hashes in the DB.
+This repository contains the backend of the project. Front-end source can be found here - [![Front-end Repo.](https://www.innovaccer.com/images/logo.png)](https://www.innovaccer.com/)
+
+## Tech Stack
+- Laravel Framework
+- MySQL Databasae
+- Amazon AWS EC2 to host
+
 
 ## Database Schema
-![Database Schema](/PizzaERD.png)
-
-I had to use a synthetic primary key for the `choices` table because Laravel has weak support for composite primary keys (otherwise they key would have been `(user_id, pizza_id, order_id)`.
+![ERD](https://raw.githubusercontent.com/amitsagtani97/pizza_store-backend/master/ERD.png)
