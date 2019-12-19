@@ -1,6 +1,6 @@
 # The PIZZA Store
 
-This repository contains the backend of the project. Front-end source can be found here - [![Front-end Repo.](https://www.innovaccer.com/images/logo.png)](https://www.innovaccer.com/)
+This repository contains the backend of the project. Front-end source can be found here - ![Front-end Repo](https://github.com/amitsagtani97/pizza_store-frontend)
 
 ## Tech Stack
 - Laravel Framework
